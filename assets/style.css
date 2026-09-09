@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
 :root {
   --bg-deep: #16294a;
   --bg-mid: #2c4d7c;
@@ -13,7 +15,7 @@
 html,
 body {
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 body {
@@ -61,13 +63,23 @@ header {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #3f6bf0 0%, #2947b0 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 16px;
-  color: #fff;
+  overflow: hidden;
+}
+
+.brand-mark img,
+.login-brand-mark img,
+.big-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.logo-1 {
+  padding: 3px;
 }
 
 .brand-name {
@@ -144,17 +156,6 @@ header {
   cursor: pointer;
 }
 
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--pattern);
-  background-size: 140px;
-  opacity: 0.18;
-  mix-blend-mode: overlay;
-  z-index: -1;
-}
-
 .card span {
   position: relative;
 }
@@ -202,64 +203,56 @@ header {
 
 .card.app1 {
   background: linear-gradient(135deg, #3f6bf0 0%, #2947b0 100%);
-  --pattern: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.5) 0 2px, transparent 2px 40px);
   width: 100%;
   z-index: 1;
 }
 
 .card.app2 {
   background: linear-gradient(135deg, #4fa8e0 0%, #2f7bc4 100%);
-  --pattern: repeating-linear-gradient(65deg, rgba(255, 255, 255, 0.45) 0 2px, transparent 2px 34px);
   width: 94%;
-  margin-top: -34px;
+  margin-top: -14px;
   z-index: 2;
 }
 
 .card.app3 {
   background: linear-gradient(135deg, #2fb6b6 0%, #1f7ea3 100%);
-  --pattern: repeating-linear-gradient(20deg, rgba(255, 255, 255, 0.4) 0 2px, transparent 2px 30px);
   width: 88%;
-  margin-top: -34px;
+  margin-top: -14px;
   z-index: 3;
 }
 
 .card.app4 {
   background: linear-gradient(135deg, #5b6bd6 0%, #3d3f9e 100%);
-  --pattern: repeating-linear-gradient(150deg, rgba(255, 255, 255, 0.4) 0 2px, transparent 2px 36px);
   width: 82%;
-  margin-top: -34px;
+  margin-top: -14px;
   z-index: 4;
 }
 
 .card.app5 {
   background: linear-gradient(135deg, #22b0c9 0%, #1477a3 100%);
-  --pattern: repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.4) 0 2px, transparent 2px 32px);
   width: 76%;
-  margin-top: -34px;
+  margin-top: -14px;
   z-index: 5;
 }
 
 .card.app6 {
   background: linear-gradient(135deg, #5c7fc7 0%, #2b4570 100%);
-  --pattern: repeating-linear-gradient(40deg, rgba(255, 255, 255, 0.4) 0 2px, transparent 2px 30px);
   width: 70%;
-  margin-top: -34px;
+  margin-top: -14px;
   z-index: 6;
 }
 
 .card.app7 {
   background: linear-gradient(135deg, #3454a8 0%, #1c2b5e 100%);
-  --pattern: repeating-linear-gradient(80deg, rgba(255, 255, 255, 0.4) 0 2px, transparent 2px 34px);
   width: 64%;
-  margin-top: -34px;
+  margin-top: -14px;
   z-index: 7;
 }
 
 .card.app8 {
   background: linear-gradient(135deg, #22b0c9 0%, #1477a3 100%);
-  --pattern: repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.4) 0 2px, transparent 2px 32px);
   width: 58%;
-  margin-top: -34px;
+  margin-top: -14px;
   z-index: 7;
 }
 
@@ -617,13 +610,10 @@ body.login-page {
   width: 44px;
   height: 44px;
   border-radius: 13px;
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 20px;
-  color: #fff;
+  overflow: hidden;
 }
 
 .login-page .login-brand-name {
