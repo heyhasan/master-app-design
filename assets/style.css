@@ -154,6 +154,12 @@ header {
   isolation: isolate;
   text-decoration: none;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
 }
 
 .card span {
@@ -202,55 +208,55 @@ header {
 }
 
 .card.app1 {
-  background: linear-gradient(135deg, #3f6bf0 0%, #2947b0 100%);
+  background: #737fae;
   width: 100%;
   z-index: 1;
 }
 
 .card.app2 {
-  background: linear-gradient(135deg, #4fa8e0 0%, #2f7bc4 100%);
+  background: #6288ed;
   width: 94%;
   margin-top: -14px;
   z-index: 2;
 }
 
 .card.app3 {
-  background: linear-gradient(135deg, #2fb6b6 0%, #1f7ea3 100%);
+  background: #778be1;
   width: 88%;
   margin-top: -14px;
   z-index: 3;
 }
 
 .card.app4 {
-  background: linear-gradient(135deg, #5b6bd6 0%, #3d3f9e 100%);
+  background: #7898ef;
   width: 82%;
   margin-top: -14px;
   z-index: 4;
 }
 
 .card.app5 {
-  background: linear-gradient(135deg, #22b0c9 0%, #1477a3 100%);
+  background: #626b9f;
   width: 76%;
   margin-top: -14px;
   z-index: 5;
 }
 
 .card.app6 {
-  background: linear-gradient(135deg, #5c7fc7 0%, #2b4570 100%);
+  background: #637bdc;
   width: 70%;
   margin-top: -14px;
   z-index: 6;
 }
 
 .card.app7 {
-  background: linear-gradient(135deg, #3454a8 0%, #1c2b5e 100%);
+  background: #6874d3;
   width: 64%;
   margin-top: -14px;
   z-index: 7;
 }
 
 .card.app8 {
-  background: linear-gradient(135deg, #22b0c9 0%, #1477a3 100%);
+  background: #5d70d2;
   width: 58%;
   margin-top: -14px;
   z-index: 7;
@@ -264,13 +270,13 @@ nav.bottom-nav {
   transform: translateX(-50%);
   width: calc(100% - 40px);
   max-width: 390px;
-  background: #eaf2ff;
+  background: #eef1fb;
   border-radius: 26px;
   padding: 10px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 12px 28px rgba(15, 35, 70, 0.35);
+  box-shadow: 0 12px 28px rgba(83, 93, 202, 0.22);
   z-index: 50;
 }
 
@@ -280,7 +286,7 @@ nav.bottom-nav {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: #7791b8;
+  color: #62636e;
   text-decoration: none;
   font-size: 12px;
   font-weight: 600;
@@ -295,7 +301,8 @@ nav.bottom-nav {
 }
 
 .nav-link.active {
-  background: linear-gradient(135deg, #3f6bf0 0%, #2947b0 100%);
+  background: #535dca;
+  color: #fff;
   padding: 10px 20px;
 }
 
@@ -566,11 +573,11 @@ nav.bottom-nav {
 
 /* --- login --- */
 :root {
-  --blue: #3f6bf0;
-  --blue-dark: #2947b0;
+  --blue: #6288ed;
+  --blue-dark: #535dca;
   --text-dark: #1c2536;
-  --text-muted: #6b7488;
-  --border: #dfe3ec;
+  --text-muted: #62636e;
+  --border: #d9deef;
 }
 
 body.login-page {
@@ -658,7 +665,7 @@ body.login-page {
   left: 20px;
   width: 190px;
   height: 230px;
-  background: linear-gradient(160deg, #eaf2ff, #d7e6ff);
+  background: #dbe4fb;
   padding: 16px;
 }
 
@@ -692,7 +699,7 @@ body.login-page {
   left: 190px;
   width: 180px;
   height: 270px;
-  background: linear-gradient(160deg, var(--blue), var(--blue-dark));
+  background: #535dca;
   padding: 16px;
   color: #fff;
 }
@@ -891,7 +898,7 @@ body.login-page {
   font-weight: 700;
   font-family: inherit;
   color: #fff;
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  background: #535dca;
   cursor: pointer;
   transition: transform .2s ease, box-shadow .2s ease;
 }
@@ -990,6 +997,29 @@ body.login-page {
 
 /* ---------- mobile: login ---------- */
 @media (max-width: 900px) {
+  body:not(.login-page) {
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
+  body:not(.login-page) .app {
+    min-height: auto;
+    padding-bottom: 110px;
+  }
+
+  body:not(.login-page) .stack {
+    flex: none;
+    padding-bottom: 12px;
+  }
+
+  body:not(.login-page) .card {
+    transition: transform 0.15s ease;
+  }
+
+  body:not(.login-page) .card:active {
+    transform: translateY(2px) scale(0.985);
+  }
+
   .login-page .page {
     flex-direction: column;
   }
