@@ -1,15 +1,509 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master App</title>
+    <title>Manage - Master App</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
-<body>
-    
+<body class="manage-page">
+    <div class="app">
+        <header>
+            <div class="header-left">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark"><img class="logo-1" src="assets/logo-1.png" alt="Inspirasi Code"></span>
+                    <span class="brand-name">Master<span>App</span></span>
+                </a>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" type="button" aria-label="Daftarkan Aplikasi" title="Daftarkan Aplikasi">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                        <path d="M17.5 14v7M14 17.5h7" />
+                    </svg>
+                </button>
+                <button class="icon-btn" aria-label="Notifikasi">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <div class="manage-heading">
+            <div>
+                <p class="eyebrow">Master Data</p>
+                <h1>Kelola Perusahaan</h1>
+                <p class="manage-description">Pilih perusahaan untuk melihat dan mengatur data karyawan.</p>
+            </div>
+            <div class="total-badge">3 perusahaan</div>
+        </div>
+
+        <main class="manage-layout">
+            <section class="manage-panel company-panel" aria-labelledby="company-title">
+                <div class="panel-heading">
+                    <div>
+                        <h2 id="company-title">Daftar Perusahaan</h2>
+                    </div>
+                    <div class="company-actions">
+                        <span class="panel-count">03</span>
+                        <button class="add-button" id="openCompanyModal" type="button" aria-label="Tambah perusahaan">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                            Tambah
+                        </button>
+                    </div>
+                </div>
+
+                <div class="company-list">
+                    <article class="company-card selected" data-company-code="INS-001" data-company-name="PT. Inspirasi Kode" tabindex="0">
+                        <div class="company-logo logo-blue">IK</div>
+                        <div class="company-info">
+                            <h3>PT. Inspirasi Kode</h3>
+                            <p>INS-001</p>
+                            <p class="company-employee-count" data-company-count="INS-001">0 karyawan</p>
+                        </div>
+                        <button class="manage-button" type="button">Kelola</button>
+                    </article>
+                    <article class="company-card" data-company-code="TRS-002" data-company-name="PT. Tips Transportasi" tabindex="0">
+                        <div class="company-logo logo-orange">TP</div>
+                        <div class="company-info">
+                            <h3>PT. Tips Transportasi</h3>
+                            <p>TRS-002</p>
+                            <p class="company-employee-count" data-company-count="TRS-002">0 karyawan</p>
+                        </div>
+                        <button class="manage-button" type="button">Kelola</button>
+                    </article>
+                    <article class="company-card" data-company-code="IOF-003" data-company-name="PT. Inspirasi Office" tabindex="0">
+                        <div class="company-logo logo-green">IOF</div>
+                        <div class="company-info">
+                            <h3>PT. Inspirasi Office</h3>
+                            <p>IOF-003</p>
+                            <p class="company-employee-count" data-company-count="IOF-003">0 karyawan</p>
+                        </div>
+                        <button class="manage-button" type="button">Kelola</button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="manage-panel employee-panel" aria-labelledby="employee-title">
+                <div class="panel-heading employee-heading">
+                    <div>
+                        <p class="panel-kicker"><span id="employeeCompanyName">PT. Inspirasi Kode</span> <span>/ <span id="employeeCompanyCode">INS-001</span></span></p>
+                        <h2 id="employee-title">Data Karyawan</h2>
+                    </div>
+                    <div class="employee-actions">
+                        <label class="page-size-control" for="employeePageSize">
+                            Show
+                            <select id="employeePageSize" aria-label="Jumlah data karyawan yang ditampilkan">
+                                <option value="10">10</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </label>
+                        <button class="sort-button" type="button" aria-label="Sortir data karyawan" title="Sortir">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 6h13M8 12h9M8 18h5" />
+                                <path d="m3 6 2-2 2 2M5 4v16m0 0 2-2M5 20l-2-2" />
+                            </svg>
+                            Shortby
+                        </button>
+                        <button class="add-button" type="button" aria-label="Tambah karyawan">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                            Tambah
+                        </button>
+                    </div>
+                </div>
+
+                <form class="employee-search" id="employeeSearchForm" role="search">
+                    <label class="visually-hidden" for="employeeSearch">Cari data karyawan</label>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-4-4" />
+                    </svg>
+                    <input id="employeeSearch" type="search" placeholder="Cari nama, ID, jabatan, atau divisi..." autocomplete="off">
+                </form>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr data-company="INS-001">
+                                <th>Nama Karyawan</th>
+                                <th>Jabatan</th>
+                                <th>Divisi</th>
+                                <th>Status</th>
+                                <th>Kelola</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-company="INS-001">
+                                <td><strong>Hasan Basri</strong><span>EMP-001</span></td>
+                                <td>Quality Assurance Engineer</td>
+                                <td>QA</td>
+                                <td><span class="status active-status">Aktif</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button edit-action" type="button" aria-label="Edit Hasan Basri" title="Edit">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg>
+                                        </button>
+                                        <button class="action-button profile-action" type="button" aria-label="Detail profil Hasan Basri" title="Detail profil">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
+                                        </button>
+                                        <button class="action-button delete-action" type="button" aria-label="Hapus Hasan Basri" title="Hapus">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18" /><path d="M8 6V4h8v2M19 6l-1 14H6L5 6" /><path d="M10 11v5M14 11v5" /></svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-company="INS-001">
+                                <td><strong>Nadia Putri</strong><span>EMP-002</span></td>
+                                <td>UI/UX Designer</td>
+                                <td>Design</td>
+                                <td><span class="status active-status">Aktif</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button edit-action" type="button" aria-label="Edit Nadia Putri" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg></button>
+                                        <button class="action-button profile-action" type="button" aria-label="Detail profil Nadia Putri" title="Detail profil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg></button>
+                                        <button class="action-button delete-action" type="button" aria-label="Hapus Nadia Putri" title="Hapus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18" /><path d="M8 6V4h8v2M19 6l-1 14H6L5 6" /><path d="M10 11v5M14 11v5" /></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-company="INS-001">
+                                <td><strong>Fajar Nugraha</strong><span>EMP-003</span></td>
+                                <td>Backend Developer</td>
+                                <td>Engineering</td>
+                                <td><span class="status leave-status">Non Aktif</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button edit-action" type="button" aria-label="Edit Fajar Nugraha" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg></button>
+                                        <button class="action-button profile-action" type="button" aria-label="Detail profil Fajar Nugraha" title="Detail profil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg></button>
+                                        <button class="action-button delete-action" type="button" aria-label="Hapus Fajar Nugraha" title="Hapus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18" /><path d="M8 6V4h8v2M19 6l-1 14H6L5 6" /><path d="M10 11v5M14 11v5" /></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-company="INS-001">
+                                <td><strong>Ririn Rinjani</strong><span>EMP-004</span></td>
+                                <td>Accountant</td>
+                                <td>Finance</td>
+                                <td><span class="status active-status">Aktif</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-button edit-action" type="button" aria-label="Edit Ririn Rinjani" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg></button>
+                                        <button class="action-button profile-action" type="button" aria-label="Detail profil Ririn Rinjani" title="Detail profil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg></button>
+                                        <button class="action-button delete-action" type="button" aria-label="Hapus Ririn Rinjani" title="Hapus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18" /><path d="M8 6V4h8v2M19 6l-1 14H6L5 6" /><path d="M10 11v5M14 11v5" /></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <p class="table-summary" id="employeeSummary">Menampilkan 1-4 dari 4 data</p>
+                    <nav class="pagination" id="employeePagination" aria-label="Pagination data karyawan"></nav>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <dialog class="confirm-modal" id="deleteModal" aria-labelledby="deleteModalTitle">
+        <div class="confirm-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6h18" />
+                <path d="M8 6V4h8v2M19 6l-1 14H6L5 6" />
+                <path d="M10 11v5M14 11v5" />
+            </svg>
+        </div>
+        <h2 id="deleteModalTitle">Hapus karyawan?</h2>
+        <p>Data <strong id="deleteEmployeeName">karyawan</strong> akan dihapus dan tidak dapat dipulihkan.</p>
+        <div class="confirm-actions">
+            <button class="cancel-button" id="cancelDelete" type="button">Batal</button>
+            <button class="confirm-delete-button" id="confirmDelete" type="button">Ya, hapus</button>
+        </div>
+    </dialog>
+
+    <dialog class="company-modal" id="companyModal" aria-labelledby="companyModalTitle">
+        <form id="companyForm" method="dialog">
+            <div class="company-modal-header">
+                <div>
+                    <p class="eyebrow">Organisasi</p>
+                    <h2 id="companyModalTitle">Tambah perusahaan</h2>
+                    <p class="modal-description">Lengkapi informasi perusahaan untuk menambah data baru.</p>
+                </div>
+                <button class="modal-close" id="closeCompanyModal" type="button" aria-label="Tutup modal">&times;</button>
+            </div>
+
+            <fieldset class="form-section">
+                <legend>Informasi utama</legend>
+                <div class="form-grid">
+                    <label class="form-field required-field">Nama perusahaan<input name="nama_perusahaan" required></label>
+                    <label class="form-field required-field">Alias perusahaan<input name="nama_perusahaan_alias" required></label>
+                    <label class="form-field required-field">Kode perusahaan<input name="kode_perusahaan" maxlength="10" required></label>
+                    <label class="form-field">Status<select name="is_active"><option value="true">Aktif</option><option value="false">Tidak aktif</option></select></label>
+                    <label class="form-field">Logo<input name="logo" type="file" accept="image/*"></label>
+                    <label class="form-field">Kop surat<input name="kop" type="file" accept="image/*,.pdf"></label>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Akta pendirian</legend>
+                <div class="form-grid">
+                    <label class="form-field">Nomor akta<input name="nomor_akta_pendirian"></label>
+                    <label class="form-field">Tanggal akta<input name="tanggal_akta_pendirian" type="date"></label>
+                    <label class="form-field">Nama notaris<input name="nama_notaris_akta_pendirian"></label>
+                    <label class="form-field">AHU akta<input name="ahu_akta_pendirian"></label>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Akta perubahan</legend>
+                <div class="form-grid">
+                    <label class="form-field">Nomor akta<input name="nomor_akta_perubahan"></label>
+                    <label class="form-field">Tanggal akta<input name="tanggal_akta_perubahan" type="date"></label>
+                    <label class="form-field">Nama notaris<input name="nama_notaris_akta_perubahan"></label>
+                    <label class="form-field">AHU akta<input name="ahu_akta_perubahan"></label>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Domisili dan perizinan</legend>
+                <div class="form-grid">
+                    <label class="form-field">Nomor domisili<input name="nomor_domisili"></label>
+                    <label class="form-field">Tanggal domisili<input name="tanggal_domisili" type="date"></label>
+                    <label class="form-field full-field">Alamat domisili<textarea name="alamat_domisili" rows="2"></textarea></label>
+                    <label class="form-field">Nomor NPWP<input name="nomor_npwp"></label>
+                    <label class="form-field">Nomor NIB<input name="nomor_nib"></label>
+                    <label class="form-field">Tanggal terbit NIB<input name="tanggal_terbit_nib" type="date"></label>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Kontak dan pimpinan</legend>
+                <div class="form-grid">
+                    <label class="form-field">Telepon<input name="telepon" type="tel"></label>
+                    <label class="form-field">Email<input name="email" type="email"></label>
+                    <label class="form-field">Nama pimpinan<input name="nama_pimpinan"></label>
+                    <label class="form-field">Gelar pimpinan<input name="nama_pimpinan_gelar"></label>
+                    <label class="form-field">Jabatan pimpinan<input name="jabatan_pimpinan"></label>
+                    <label class="form-field">Nomor HP pimpinan<input name="nomor_hp_pimpinan" type="tel"></label>
+                </div>
+            </fieldset>
+
+            <div class="company-modal-footer">
+                <button class="cancel-button" id="cancelCompanyModal" type="button">Batal</button>
+                <button class="add-button" type="submit">Simpan perusahaan</button>
+            </div>
+        </form>
+    </dialog>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5" /><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10" /></svg>
+            Home
+        </a>
+        <a href="manage.html" class="nav-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 0-.4 1.09V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8.6 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09A1.65 1.65 0 0 0 19.4 15Z" /></svg>
+            Manage
+        </a>
+        <a href="helpdesk.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2 2-2 3.5" /><line x1="12" y1="16.5" x2="12" y2="16.5" /></svg>
+            Helpdesk
+        </a>
+        <a href="profile.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+            Profile
+        </a>
+    </nav>
+
+    <script>
+        const deleteModal = document.getElementById('deleteModal');
+        const companyModal = document.getElementById('companyModal');
+        const companyForm = document.getElementById('companyForm');
+        const companyList = document.querySelector('.company-list');
+        const companyCountBadge = document.querySelector('.company-panel .panel-count');
+        const totalCompanyBadge = document.querySelector('.total-badge');
+        const deleteEmployeeName = document.getElementById('deleteEmployeeName');
+        const cancelDelete = document.getElementById('cancelDelete');
+        const confirmDelete = document.getElementById('confirmDelete');
+        const employeeSearchForm = document.getElementById('employeeSearchForm');
+        const employeeSearch = document.getElementById('employeeSearch');
+        const employeePageSize = document.getElementById('employeePageSize');
+        const employeeSummary = document.getElementById('employeeSummary');
+        const employeePagination = document.getElementById('employeePagination');
+        const employeeCompanyName = document.getElementById('employeeCompanyName');
+        const employeeCompanyCode = document.getElementById('employeeCompanyCode');
+        const companyCards = document.querySelectorAll('.company-card');
+        let currentEmployeePage = 1;
+        let selectedCompanyCode = 'INS-001';
+        let selectedEmployeeRow;
+
+        document.getElementById('openCompanyModal').addEventListener('click', () => companyModal.showModal());
+        document.getElementById('closeCompanyModal').addEventListener('click', () => companyModal.close());
+        document.getElementById('cancelCompanyModal').addEventListener('click', () => companyModal.close());
+
+        companyForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = new FormData(companyForm);
+            const companyName = formData.get('nama_perusahaan').trim();
+            const companyCode = formData.get('kode_perusahaan').trim().toUpperCase();
+            const alias = formData.get('nama_perusahaan_alias').trim();
+            const initials = companyName.split(/\s+/).map((word) => word[0]).join('').slice(0, 3).toUpperCase();
+            const companyCard = document.createElement('article');
+            companyCard.className = 'company-card';
+            companyCard.dataset.companyCode = companyCode;
+            companyCard.dataset.companyName = companyName;
+            companyCard.tabIndex = 0;
+            companyCard.innerHTML = `<div class="company-logo logo-green">${initials}</div><div class="company-info"><h3>${companyName}</h3><p>${companyCode} · ${alias}</p><p class="company-employee-count" data-company-count="${companyCode}">0 karyawan</p></div><button class="manage-button" type="button">Kelola</button>`;
+            companyList.appendChild(companyCard);
+            attachCompanyCard(companyCard);
+            updateCompanyEmployeeCounts();
+            companyForm.reset();
+            companyModal.close();
+            totalCompanyBadge.textContent = `${companyList.children.length} perusahaan`;
+            companyCountBadge.textContent = String(companyList.children.length).padStart(2, '0');
+        });
+
+        const updateCompanyEmployeeCounts = () => {
+            document.querySelectorAll('[data-company-count]').forEach((countLabel) => {
+                const employeeCount = document.querySelectorAll(`tbody tr[data-company="${countLabel.dataset.companyCount}"]`).length;
+                countLabel.textContent = `${employeeCount} karyawan`;
+            });
+        };
+
+        employeeSearchForm.addEventListener('submit', (event) => event.preventDefault());
+
+        const renderEmployeePagination = (totalPages) => {
+            employeePagination.innerHTML = '';
+
+            const previousButton = document.createElement('button');
+            previousButton.className = 'pagination-button';
+            previousButton.type = 'button';
+            previousButton.textContent = '‹';
+            previousButton.disabled = currentEmployeePage === 1;
+            previousButton.setAttribute('aria-label', 'Halaman sebelumnya');
+            previousButton.addEventListener('click', () => {
+                currentEmployeePage -= 1;
+                applyEmployeeFilters();
+            });
+            employeePagination.appendChild(previousButton);
+
+            for (let page = 1; page <= totalPages; page += 1) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `pagination-button${page === currentEmployeePage ? ' active' : ''}`;
+                pageButton.type = 'button';
+                pageButton.textContent = page;
+                pageButton.setAttribute('aria-label', `Halaman ${page}`);
+                pageButton.setAttribute('aria-current', page === currentEmployeePage ? 'page' : 'false');
+                pageButton.addEventListener('click', () => {
+                    currentEmployeePage = page;
+                    applyEmployeeFilters();
+                });
+                employeePagination.appendChild(pageButton);
+            }
+
+            const nextButton = document.createElement('button');
+            nextButton.className = 'pagination-button';
+            nextButton.type = 'button';
+            nextButton.textContent = '›';
+            nextButton.disabled = currentEmployeePage === totalPages;
+            nextButton.setAttribute('aria-label', 'Halaman berikutnya');
+            nextButton.addEventListener('click', () => {
+                currentEmployeePage += 1;
+                applyEmployeeFilters();
+            });
+            employeePagination.appendChild(nextButton);
+        };
+
+        const applyEmployeeFilters = () => {
+            const query = employeeSearch.value.trim().toLowerCase();
+            const pageSize = Number(employeePageSize.value);
+            const rows = [...document.querySelectorAll('tbody tr')];
+            const matchedRows = rows.filter((row) => row.dataset.company === selectedCompanyCode
+                && (!query || row.textContent.toLowerCase().includes(query)));
+            const totalPages = Math.max(1, Math.ceil(matchedRows.length / pageSize));
+            const pageStart = (currentEmployeePage - 1) * pageSize;
+            const visibleRows = matchedRows.slice(pageStart, pageStart + pageSize);
+
+            if (currentEmployeePage > totalPages) {
+                currentEmployeePage = totalPages;
+                applyEmployeeFilters();
+                return;
+            }
+
+            rows.forEach((row) => {
+                row.hidden = !visibleRows.includes(row);
+            });
+
+            const firstVisible = matchedRows.length ? pageStart + 1 : 0;
+            const lastVisible = Math.min(pageStart + pageSize, matchedRows.length);
+            employeeSummary.textContent = matchedRows.length
+                ? `Menampilkan ${firstVisible}-${lastVisible} dari ${matchedRows.length} data`
+                : 'Tidak ada data yang ditemukan';
+            renderEmployeePagination(totalPages);
+        };
+
+        employeeSearch.addEventListener('input', () => {
+            currentEmployeePage = 1;
+            applyEmployeeFilters();
+        });
+        employeePageSize.addEventListener('change', () => {
+            currentEmployeePage = 1;
+            applyEmployeeFilters();
+        });
+
+        const attachCompanyCard = (companyCard) => {
+            const selectCompany = () => {
+                selectedCompanyCode = companyCard.dataset.companyCode;
+                employeeCompanyName.textContent = companyCard.dataset.companyName;
+                employeeCompanyCode.textContent = selectedCompanyCode;
+                document.querySelectorAll('.company-card').forEach((card) => card.classList.toggle('selected', card === companyCard));
+                employeeSearch.value = '';
+                currentEmployeePage = 1;
+                applyEmployeeFilters();
+            };
+
+            companyCard.addEventListener('click', selectCompany);
+            companyCard.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectCompany();
+                }
+            });
+        };
+
+        companyCards.forEach(attachCompanyCard);
+
+        document.querySelectorAll('.delete-action').forEach((button) => {
+            button.addEventListener('click', () => {
+                selectedEmployeeRow = button.closest('tr');
+                deleteEmployeeName.textContent = selectedEmployeeRow.querySelector('strong').textContent;
+                deleteModal.showModal();
+            });
+        });
+
+        cancelDelete.addEventListener('click', () => deleteModal.close());
+
+        confirmDelete.addEventListener('click', () => {
+            selectedEmployeeRow?.remove();
+            deleteModal.close();
+            updateCompanyEmployeeCounts();
+            applyEmployeeFilters();
+        });
+
+        updateCompanyEmployeeCounts();
+        applyEmployeeFilters();
+
+        deleteModal.addEventListener('click', (event) => {
+            if (event.target === deleteModal) deleteModal.close();
+        });
+    </script>
 </body>
 
 </html>
