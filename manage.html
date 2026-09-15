@@ -41,8 +41,17 @@
                 <h1>Kelola Perusahaan dan Karyawan</h1>
                 <p class="manage-description">Mudahnya manajemen data master dalam satu ekosistem</p>
             </div>
-            <div class="total-badge">2 perusahaan</div>
         </div>
+
+        <section class="quick-actions-card" aria-labelledby="quick-actions-title">
+            <h2 id="quick-actions-title">Aksi Cepat</h2>
+            <div class="quick-actions-list">
+                <button class="quick-action register-company" id="openCompanyModalQuick" type="button">Register Perusahaan</button>
+                <button class="quick-action register-division" id="openDivisionModalQuick" type="button">Register Divisi</button>
+                <button class="quick-action register-position" type="button">Register Jabatan</button>
+                <button class="quick-action view-statistics" type="button">Lihat Data Statistik</button>
+            </div>
+        </section>
 
         <main class="manage-layout">
             <section class="manage-panel company-panel" aria-labelledby="company-title">
@@ -51,12 +60,7 @@
                         <h2 id="company-title">Daftar Perusahaan</h2>
                     </div>
                     <div class="company-actions">
-                        <button class="add-button" id="openCompanyModal" type="button" aria-label="Tambah perusahaan">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                                <path d="M12 5v14M5 12h14" />
-                            </svg>
-                            Tambah
-                        </button>
+                        <span class="panel-count" aria-live="polite">2 Perusahaan</span>
                     </div>
                 </div>
 
@@ -287,6 +291,33 @@
         </form>
     </dialog>
 
+    <dialog class="company-modal division-modal" id="divisionModal" aria-labelledby="divisionModalTitle">
+        <form method="dialog">
+            <div class="company-modal-header">
+                <div>
+                    <p class="eyebrow">Master Data</p>
+                    <h2 id="divisionModalTitle">Registrasi Divisi</h2>
+                    <p class="modal-description">Lengkapi informasi di bawah ini untuk registrasi divisi.</p>
+                </div>
+                <button class="modal-close" id="closeDivisionModal" type="button" aria-label="Tutup modal">&times;</button>
+            </div>
+
+            <fieldset class="form-section">
+                <legend>Informasi Divisi</legend>
+                <div class="form-grid">
+                    <label class="form-field required-field">Nama divisi <span class="required-mark" aria-hidden="true">*</span><input name="nama_divisi" placeholder="Contoh: Human Resources" required></label>
+                    <label class="form-field required-field">Kode divisi <span class="required-mark" aria-hidden="true">*</span><input name="kode_divisi" maxlength="10" placeholder="Contoh: HRD-001" required></label>
+                    <label class="form-field full-field">Deskripsi divisi<textarea name="deskripsi_divisi" rows="3" placeholder="Masukkan deskripsi divisi (opsional)"></textarea></label>
+                </div>
+            </fieldset>
+
+            <div class="company-modal-footer">
+                <button class="cancel-button" id="cancelDivisionModal" type="button">Batal</button>
+                <button class="add-button" type="submit">Register</button>
+            </div>
+        </form>
+    </dialog>
+
     <nav class="bottom-nav">
         <a href="index.html" class="nav-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5" /><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10" /></svg>
@@ -309,10 +340,10 @@
     <script>
         const deleteModal = document.getElementById('deleteModal');
         const companyModal = document.getElementById('companyModal');
+        const divisionModal = document.getElementById('divisionModal');
         const companyForm = document.getElementById('companyForm');
         const companyList = document.querySelector('.company-list');
         const companyCountBadge = document.querySelector('.company-panel .panel-count');
-        const totalCompanyBadge = document.querySelector('.total-badge');
         const deleteEmployeeName = document.getElementById('deleteEmployeeName');
         const cancelDelete = document.getElementById('cancelDelete');
         const confirmDelete = document.getElementById('confirmDelete');
@@ -328,9 +359,12 @@
         let selectedCompanyCode = 'INS-001';
         let selectedEmployeeRow;
 
-        document.getElementById('openCompanyModal').addEventListener('click', () => companyModal.showModal());
+        document.getElementById('openCompanyModalQuick').addEventListener('click', () => companyModal.showModal());
+        document.getElementById('openDivisionModalQuick').addEventListener('click', () => divisionModal.showModal());
         document.getElementById('closeCompanyModal').addEventListener('click', () => companyModal.close());
         document.getElementById('cancelCompanyModal').addEventListener('click', () => companyModal.close());
+        document.getElementById('closeDivisionModal').addEventListener('click', () => divisionModal.close());
+        document.getElementById('cancelDivisionModal').addEventListener('click', () => divisionModal.close());
 
         companyForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -350,8 +384,7 @@
             updateCompanyEmployeeCounts();
             companyForm.reset();
             companyModal.close();
-            totalCompanyBadge.textContent = `${companyList.children.length} perusahaan`;
-            companyCountBadge.textContent = String(companyList.children.length).padStart(2, '0');
+            companyCountBadge.textContent = `${companyList.children.length} perusahaan terdaftar`;
         });
 
         const updateCompanyEmployeeCounts = () => {
@@ -488,6 +521,7 @@
             if (event.target === deleteModal) deleteModal.close();
         });
     </script>
+    <script src="assets/header-scroll.js"></script>
 </body>
 
 </html>

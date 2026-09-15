@@ -43,6 +43,7 @@ header {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 28px;
+  background: #fff;
 }
 
 .header-left {
@@ -315,8 +316,14 @@ nav.bottom-nav {
     margin: 0 auto;
   }
 
+  .manage-page header {
+    background: transparent;
+  }
+
   header {
     margin-bottom: 6px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border, #d9deef);
   }
 
   .page-title {
@@ -521,6 +528,50 @@ nav.bottom-nav {
   color: rgba(255, 255, 255, .86);
   font-size: 14px;
 }
+
+.quick-actions-card {
+  background: #fff;
+  border: 1px solid #e5e8f1;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(39, 55, 92, .05);
+  margin: 0 0 18px;
+  padding: 18px 20px;
+}
+
+.quick-actions-card h2 {
+  color: var(--text-dark);
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.quick-actions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quick-action {
+  border: 0;
+  border-radius: 9px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 10px 14px;
+  transition: filter .2s ease, transform .2s ease;
+}
+
+.quick-action:hover {
+  filter: brightness(.94);
+  transform: translateY(-1px);
+}
+
+.quick-action:active { transform: translateY(0); }
+.register-company { background: #737fae; }
+.register-division { background: #6288ed; }
+.register-position { background: #778be1; }
+.view-statistics { background: #7898ef; }
 
 .total-badge,
 .panel-count {
@@ -912,6 +963,9 @@ tbody tr:last-child td { border-bottom: 0; }
 
 .action-button:hover { background: #eef1fb; color: var(--blue-dark); }
 .action-button svg { height: 15px; width: 15px; }
+.edit-action { color: #e18b18; }
+.profile-action { color: var(--blue); }
+.delete-action { color: #d34b4b; }
 .delete-action:hover { background: #fff0f0; color: #d34b4b; }
 
 .status {
@@ -1279,6 +1333,14 @@ tbody tr:last-child td { border-bottom: 0; }
   .form-field textarea { padding: 7px 9px; }
   .form-section legend { font-size: 10px; }
   .company-modal-footer { padding-top: 2px; }
+
+  .division-modal {
+    max-width: 620px;
+  }
+
+  .division-modal .form-section {
+    grid-column: 1 / -1;
+  }
 }
 
 /* --- login --- */
@@ -1706,10 +1768,21 @@ body.login-page {
 }
 
 /* ---------- mobile: login ---------- */
-@media (max-width: 900px) {
+@media (max-width: 899px) {
   body:not(.login-page) {
     overflow-y: auto;
     align-items: flex-start;
+  }
+
+  /* Let the header lag slightly behind the page instead of sticking to the viewport. */
+  body:not(.login-page) header {
+    position: relative;
+    z-index: 40;
+    /* Extend the white header through the app padding, without outer gaps. */
+    margin: -24px -20px 16px;
+    padding: 24px 20px 12px;
+    transform: translateY(var(--header-scroll-offset, 0px));
+    transition: transform .8s cubic-bezier(.22, .61, .36, 1);
   }
 
   body:not(.login-page) .app {
