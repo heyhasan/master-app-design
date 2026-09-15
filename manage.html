@@ -48,7 +48,7 @@
             <div class="quick-actions-list">
                 <button class="quick-action register-company" id="openCompanyModalQuick" type="button">Register Perusahaan</button>
                 <button class="quick-action register-division" id="openDivisionModalQuick" type="button">Register Divisi</button>
-                <button class="quick-action register-position" type="button">Register Jabatan</button>
+                <button class="quick-action register-position" id="openPositionModalQuick" type="button">Register Jabatan</button>
                 <button class="quick-action view-statistics" type="button">Lihat Data Statistik</button>
             </div>
         </section>
@@ -318,6 +318,33 @@
         </form>
     </dialog>
 
+    <dialog class="company-modal division-modal" id="positionModal" aria-labelledby="positionModalTitle">
+        <form method="dialog">
+            <div class="company-modal-header">
+                <div>
+                    <p class="eyebrow">Master Data</p>
+                    <h2 id="positionModalTitle">Registrasi Jabatan</h2>
+                    <p class="modal-description">Lengkapi informasi di bawah ini untuk registrasi jabatan.</p>
+                </div>
+                <button class="modal-close" id="closePositionModal" type="button" aria-label="Tutup modal">&times;</button>
+            </div>
+
+            <fieldset class="form-section">
+                <legend>Informasi Jabatan</legend>
+                <div class="form-grid">
+                    <label class="form-field required-field">Nama jabatan <span class="required-mark" aria-hidden="true">*</span><input name="nama_jabatan" placeholder="Contoh: Software Engineer" required></label>
+                    <label class="form-field required-field">Kode jabatan <span class="required-mark" aria-hidden="true">*</span><input name="kode_jabatan" maxlength="10" placeholder="Contoh: SE-001" required></label>
+                    <label class="form-field full-field">Deskripsi jabatan<textarea name="deskripsi_jabatan" rows="3" placeholder="Masukkan deskripsi jabatan (opsional)"></textarea></label>
+                </div>
+            </fieldset>
+
+            <div class="company-modal-footer">
+                <button class="cancel-button" id="cancelPositionModal" type="button">Batal</button>
+                <button class="add-button" type="submit">Register</button>
+            </div>
+        </form>
+    </dialog>
+
     <nav class="bottom-nav">
         <a href="index.html" class="nav-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5" /><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10" /></svg>
@@ -341,6 +368,7 @@
         const deleteModal = document.getElementById('deleteModal');
         const companyModal = document.getElementById('companyModal');
         const divisionModal = document.getElementById('divisionModal');
+        const positionModal = document.getElementById('positionModal');
         const companyForm = document.getElementById('companyForm');
         const companyList = document.querySelector('.company-list');
         const companyCountBadge = document.querySelector('.company-panel .panel-count');
@@ -361,10 +389,13 @@
 
         document.getElementById('openCompanyModalQuick').addEventListener('click', () => companyModal.showModal());
         document.getElementById('openDivisionModalQuick').addEventListener('click', () => divisionModal.showModal());
+        document.getElementById('openPositionModalQuick').addEventListener('click', () => positionModal.showModal());
         document.getElementById('closeCompanyModal').addEventListener('click', () => companyModal.close());
         document.getElementById('cancelCompanyModal').addEventListener('click', () => companyModal.close());
         document.getElementById('closeDivisionModal').addEventListener('click', () => divisionModal.close());
         document.getElementById('cancelDivisionModal').addEventListener('click', () => divisionModal.close());
+        document.getElementById('closePositionModal').addEventListener('click', () => positionModal.close());
+        document.getElementById('cancelPositionModal').addEventListener('click', () => positionModal.close());
 
         companyForm.addEventListener('submit', (event) => {
             event.preventDefault();
