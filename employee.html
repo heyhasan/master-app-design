@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Karyawan - Master App</title>
+    <meta name="description" content="Daftar dan pengelolaan data karyawan dalam ekosistem Master App.">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body class="manage-page">
+    <div class="app">
+        <header>
+            <div class="header-left">
+                <a href="statistik.html" class="icon-btn" aria-label="Kembali" title="Kembali">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5" /><path d="m12 5-7 7 7 7" />
+                    </svg>
+                </a>
+                <a href="index.html" class="brand">
+                    <span class="brand-mark"><img class="logo-1" src="assets/logo-1.png" alt="Master App"></span>
+                    <span class="brand-name">Master<span>App</span></span>
+                </a>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" aria-label="Notifikasi">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <div class="manage-heading">
+            <div>
+                <p class="eyebrow">Master Data</p>
+                <h1>Data Karyawan</h1>
+                <p class="manage-description">Kelola seluruh data karyawan dari semua perusahaan</p>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions-card" aria-labelledby="qa-title">
+            <h2 id="qa-title">Aksi Cepat</h2>
+            <div class="quick-actions-list">
+                <button class="quick-action register-company" id="openAddModal" type="button">+ Tambah Karyawan</button>
+                <a href="company.html" class="quick-action register-division">Data Perusahaan</a>
+                <a href="division.html" class="quick-action register-position">Data Divisi</a>
+            </div>
+        </section>
+
+        <!-- Filter + Table -->
+        <div class="manage-panel" style="margin-bottom: 100px;">
+            <div class="panel-heading employee-heading">
+                <div>
+                    <p class="panel-kicker">Semua Karyawan</p>
+                    <h2>Daftar Karyawan</h2>
+                </div>
+                <div class="employee-actions">
+                    <label class="page-size-control" for="pageSize">
+                        Show
+                        <select id="pageSize">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                        </select>
+                    </label>
+                    <form class="employee-search" role="search">
+                        <label class="search-label" for="searchInput">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        </label>
+                        <input id="searchInput" class="search-input" type="search" placeholder="Cari karyawan…" autocomplete="off">
+                    </form>
+                    <span class="panel-count" id="countBadge">4 Karyawan</span>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table" id="employeeTable">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>NIK</th>
+                            <th>Perusahaan</th>
+                            <th>Divisi</th>
+                            <th>Jabatan</th>
+                            <th>Bergabung</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeTableBody">
+                        <tr>
+                            <td><strong>Edi Santoso, S.Kom.</strong><span>Edi</span></td>
+                            <td>3573010101900001</td>
+                            <td>PT. Inspirasi Kode</td>
+                            <td>Engineering</td>
+                            <td>Backend Developer</td>
+                            <td>01 Jan 2022</td>
+                            <td><span class="status status-active">Aktif</span></td>
+                            <td>
+                                <div class="row-actions">
+                                    <button class="action-button profile-action" title="Detail" onclick="openDetailModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </button>
+                                    <button class="action-button edit-action" title="Edit" onclick="openEditModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
+                                    </button>
+                                    <button class="action-button delete-action" title="Hapus" onclick="openDeleteModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Siti Rahayu</strong><span>Siti</span></td>
+                            <td>3573010205950002</td>
+                            <td>PT. Inspirasi Kode</td>
+                            <td>Design</td>
+                            <td>UI/UX Designer</td>
+                            <td>15 Mar 2023</td>
+                            <td><span class="status status-active">Aktif</span></td>
+                            <td>
+                                <div class="row-actions">
+                                    <button class="action-button profile-action" title="Detail" onclick="openDetailModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </button>
+                                    <button class="action-button edit-action" title="Edit" onclick="openEditModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
+                                    </button>
+                                    <button class="action-button delete-action" title="Hapus" onclick="openDeleteModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Budi Santoso</strong><span>Budi</span></td>
+                            <td>3573010312880003</td>
+                            <td>PT. Inspirasi Kode</td>
+                            <td>Finance</td>
+                            <td>Accountant</td>
+                            <td>10 Jun 2021</td>
+                            <td><span class="status status-active">Aktif</span></td>
+                            <td>
+                                <div class="row-actions">
+                                    <button class="action-button profile-action" title="Detail" onclick="openDetailModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </button>
+                                    <button class="action-button edit-action" title="Edit" onclick="openEditModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
+                                    </button>
+                                    <button class="action-button delete-action" title="Hapus" onclick="openDeleteModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dewi Lestari</strong><span>Dewi</span></td>
+                            <td>3573010407920004</td>
+                            <td>PT. Lion Kids Indonesia</td>
+                            <td>QA</td>
+                            <td>QA Engineer</td>
+                            <td>20 Sep 2024</td>
+                            <td><span class="status status-inactive">Non-aktif</span></td>
+                            <td>
+                                <div class="row-actions">
+                                    <button class="action-button profile-action" title="Detail" onclick="openDetailModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </button>
+                                    <button class="action-button edit-action" title="Edit" onclick="openEditModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
+                                    </button>
+                                    <button class="action-button delete-action" title="Hapus" onclick="openDeleteModal(this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-footer">
+                <p class="table-summary" id="tableSummary">Menampilkan 1-4 dari 4 data</p>
+                <nav class="pagination" id="pagination" aria-label="Pagination karyawan"></nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>Home</a>
+        <a href="manage.html" class="nav-link active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>Manage</a>
+        <a href="helpdesk.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2 2-2 3.5"/><line x1="12" y1="16.5" x2="12" y2="16.5"/></svg>Helpdesk</a>
+        <a href="profile.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+    </nav>
+
+    <!-- Modal Tambah / Edit Karyawan -->
+    <dialog class="company-modal employee-modal" id="employeeModal" aria-labelledby="employeeModalTitle">
+        <form id="employeeForm" method="dialog">
+            <div class="company-modal-header">
+                <div>
+                    <p class="eyebrow">Master Data</p>
+                    <h2 id="employeeModalTitle">Tambah Karyawan</h2>
+                    <p class="modal-description">Lengkapi informasi di bawah ini untuk data karyawan.</p>
+                </div>
+                <button class="modal-close" id="closeModal" type="button" aria-label="Tutup">&times;</button>
+            </div>
+
+            <fieldset class="form-section">
+                <legend>Data Pribadi</legend>
+                <div class="form-grid">
+                    <label class="form-field required-field">Nama lengkap <span class="required-mark" aria-hidden="true">*</span><input name="nama_lengkap" placeholder="Contoh: Edi Santoso" required></label>
+                    <label class="form-field">Nama panggilan<input name="nama_panggilan" placeholder="Contoh: Edi"></label>
+                    <label class="form-field">Nama dan gelar<input name="nama_gelar" placeholder="Contoh: Edi Santoso, S.Kom."></label>
+                    <label class="form-field">Nama BPJS<input name="nama_bpjs" placeholder="Contoh: EDI SANTOSO"></label>
+                    <label class="form-field">Tempat lahir<input name="tempat_lahir" placeholder="Contoh: Malang"></label>
+                    <label class="form-field">Tanggal lahir<input name="tanggal_lahir" type="date"></label>
+                    <label class="form-field required-field">Jenis kelamin <span class="required-mark" aria-hidden="true">*</span><select name="jenis_kelamin" required><option value="" selected disabled>Pilih jenis kelamin</option><option value="Laki-laki">Laki-laki</option><option value="Perempuan">Perempuan</option></select></label>
+                    <label class="form-field">Agama<select name="agama"><option value="" selected>Pilih agama</option><option value="Islam">Islam</option><option value="Kristen">Kristen</option><option value="Katolik">Katolik</option><option value="Hindu">Hindu</option><option value="Buddha">Buddha</option><option value="Konghucu">Konghucu</option></select></label>
+                    <label class="form-field required-field">Status perkawinan <span class="required-mark" aria-hidden="true">*</span><select name="status_perkawinan" required><option value="" selected disabled>Pilih status</option><option value="Belum Kawin">Belum kawin</option><option value="Kawin">Kawin</option><option value="Cerai Hidup">Cerai hidup</option><option value="Cerai Mati">Cerai mati</option></select></label>
+                    <label class="form-field">Foto<input name="foto" type="file" accept="image/*"></label>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Identitas dan Kontak</legend>
+                <div class="form-grid">
+                    <label class="form-field">NIK<input name="nik" inputmode="numeric" maxlength="16" pattern="[0-9]{16}" placeholder="16 digit NIK"></label>
+                    <label class="form-field">NPWP<input name="npwp" maxlength="50" placeholder="Contoh: 12.345.678.9-012.000"></label>
+                    <label class="form-field">Telepon<input name="telepon" type="tel" maxlength="12" placeholder="Contoh: 0812-7272-7272"></label>
+                    <label class="form-field">Email<input name="email" type="email" placeholder="Contoh: nama@mail.com"></label>
+                    <label class="form-field full-field">Alamat KTP<textarea name="alamat_ktp" rows="2" placeholder="Alamat sesuai KTP"></textarea></label>
+                    <label class="form-field full-field">Alamat domisili<textarea name="alamat_domisili" rows="2" placeholder="Alamat tempat tinggal saat ini"></textarea></label>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Pendidikan</legend>
+                <div class="form-grid">
+                    <label class="form-field">Pendidikan terakhir<select name="pendidikan_terakhir"><option value="" selected>Pilih pendidikan</option><option value="SMA/SMK">SMA/SMK</option><option value="D3">D3</option><option value="S1">S1</option><option value="S2">S2</option><option value="S3">S3</option></select></label>
+                    <label class="form-field">Program studi<input name="program_studi" placeholder="Contoh: Teknik Informatika"></label>
+                    <label class="form-field">Universitas<input name="universitas" placeholder="Contoh: Universitas Inspirasi"></label>
+                    <label class="form-field">Tahun lulus<input name="tahun_lulus" inputmode="numeric" maxlength="4" placeholder="Contoh: 2024"></label>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Kepegawaian dan Rekening</legend>
+                <div class="form-grid">
+                    <label class="form-field required-field">Perusahaan <span class="required-mark" aria-hidden="true">*</span><select name="perusahaan_id" required><option value="INS-001">PT. Inspirasi Kode</option><option value="LKI-002">PT. Lion Kids Indonesia</option></select></label>
+                    <label class="form-field required-field">Divisi <span class="required-mark" aria-hidden="true">*</span><select name="divisi_id" required><option value="" selected disabled>Pilih divisi</option><option value="QA">QA</option><option value="Design">Design</option><option value="Engineering">Engineering</option><option value="Finance">Finance</option></select></label>
+                    <label class="form-field required-field">Jabatan <span class="required-mark" aria-hidden="true">*</span><select name="jabatan_id" required><option value="" selected disabled>Pilih jabatan</option><option value="QA Engineer">QA Engineer</option><option value="UI/UX Designer">UI/UX Designer</option><option value="Backend Developer">Backend Developer</option><option value="Accountant">Accountant</option></select></label>
+                    <label class="form-field">Tanggal bergabung<input name="tanggal_bergabung" type="date"></label>
+                    <label class="form-field">Nama rekening<input name="nama_rekening" placeholder="Contoh: EDI SANTOSO"></label>
+                    <label class="form-field">Nomor rekening<input name="nomor_rekening" inputmode="numeric" placeholder="Contoh: 002277027"></label>
+                    <label class="form-field">Bank<input name="bank" placeholder="Contoh: BCI"></label>
+                    <label class="form-field required-field">Status <span class="required-mark" aria-hidden="true">*</span><select name="is_active" required><option value="true" selected>Aktif</option><option value="false">Tidak aktif</option></select></label>
+                </div>
+            </fieldset>
+
+            <div class="company-modal-footer">
+                <button class="cancel-button" id="cancelModal" type="button">Batal</button>
+                <button class="add-button" type="submit" id="submitBtn">Simpan Karyawan</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Modal Konfirmasi Hapus -->
+    <dialog class="confirm-modal" id="deleteModal" aria-labelledby="deleteTitle">
+        <div class="confirm-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg>
+        </div>
+        <h2 id="deleteTitle">Hapus Karyawan?</h2>
+        <p>Data karyawan <strong id="deleteTargetName">ini</strong> akan dihapus dan tidak dapat dipulihkan.</p>
+        <div class="confirm-actions">
+            <button class="cancel-button" id="cancelDelete" type="button">Batal</button>
+            <button class="confirm-delete-button" id="confirmDelete" type="button">Ya, hapus</button>
+        </div>
+    </dialog>
+
+    <!-- Modal Detail Karyawan -->
+    <dialog class="detail-modal" id="detailModal" aria-labelledby="detailEmpTitle">
+        <div class="detail-hero">
+            <div class="detail-hero-avatar" id="detailAvatar">ES</div>
+            <div class="detail-hero-info">
+                <div class="detail-hero-name" id="detailEmpTitle">Edi Santoso</div>
+                <div class="detail-hero-meta">
+                    <span class="detail-hero-badge" id="detailEmpNik">NIK: -</span>
+                    <span class="detail-hero-badge" id="detailEmpStatus">Aktif</span>
+                </div>
+            </div>
+            <button class="detail-close-btn" id="closeDetailModal" aria-label="Tutup">&times;</button>
+        </div>
+        <div class="detail-body">
+            <div class="detail-section">
+                <div class="detail-section-title">Data Pribadi</div>
+                <div class="detail-info-grid">
+                    <div class="detail-info-item"><span class="detail-info-label">Nama Lengkap</span><span class="detail-info-value" id="de-nama-lengkap">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Nama Panggilan</span><span class="detail-info-value" id="de-nama-panggilan">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Nama dan Gelar</span><span class="detail-info-value" id="de-nama-gelar">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Nama BPJS</span><span class="detail-info-value" id="de-nama-bpjs">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Tempat Lahir</span><span class="detail-info-value" id="de-tempat-lahir">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Tanggal Lahir</span><span class="detail-info-value" id="de-tanggal-lahir">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Jenis Kelamin</span><span class="detail-info-value" id="de-jk">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Agama</span><span class="detail-info-value" id="de-agama">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Status Perkawinan</span><span class="detail-info-value" id="de-status-kawin">-</span></div>
+                </div>
+            </div>
+            <div class="detail-section">
+                <div class="detail-section-title">Identitas dan Kontak</div>
+                <div class="detail-info-grid">
+                    <div class="detail-info-item"><span class="detail-info-label">NIK</span><span class="detail-info-value" id="de-nik">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">NPWP</span><span class="detail-info-value" id="de-npwp">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Telepon</span><span class="detail-info-value" id="de-telp">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Email</span><span class="detail-info-value" id="de-email">-</span></div>
+                    <div class="detail-info-item full-item"><span class="detail-info-label">Alamat KTP</span><span class="detail-info-value" id="de-alamat-ktp">-</span></div>
+                    <div class="detail-info-item full-item"><span class="detail-info-label">Alamat Domisili</span><span class="detail-info-value" id="de-alamat-domisili">-</span></div>
+                </div>
+            </div>
+            <div class="detail-section">
+                <div class="detail-section-title">Pendidikan</div>
+                <div class="detail-info-grid">
+                    <div class="detail-info-item"><span class="detail-info-label">Pendidikan Terakhir</span><span class="detail-info-value" id="de-pendidikan">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Program Studi</span><span class="detail-info-value" id="de-prodi">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Universitas</span><span class="detail-info-value" id="de-univ">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Tahun Lulus</span><span class="detail-info-value" id="de-tahun-lulus">-</span></div>
+                </div>
+            </div>
+            <div class="detail-section">
+                <div class="detail-section-title">Kepegawaian dan Rekening</div>
+                <div class="detail-info-grid">
+                    <div class="detail-info-item"><span class="detail-info-label">Perusahaan</span><span class="detail-info-value" id="de-perusahaan">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Divisi</span><span class="detail-info-value" id="de-divisi">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Jabatan</span><span class="detail-info-value" id="de-jabatan">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Tanggal Bergabung</span><span class="detail-info-value" id="de-bergabung">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Status Aktif</span><span class="detail-info-value" id="de-status-aktif">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Nama Rekening</span><span class="detail-info-value" id="de-rek-nama">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Nomor Rekening</span><span class="detail-info-value" id="de-rek-no">-</span></div>
+                    <div class="detail-info-item"><span class="detail-info-label">Bank</span><span class="detail-info-value" id="de-bank">-</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-footer">
+            <button class="cancel-button" id="closeDetailFooter" type="button">Tutup</button>
+            <button class="add-button" id="editFromDetail" type="button">Edit Data</button>
+        </div>
+    </dialog>
+
+    <script src="assets/custom.js"></script>
+    <script>
+        const modal = document.getElementById('employeeModal');
+        const deleteModal = document.getElementById('deleteModal');
+        const detailModal = document.getElementById('detailModal');
+        const modalTitle = document.getElementById('employeeModalTitle');
+        const submitBtn = document.getElementById('submitBtn');
+        let deleteTargetRow = null;
+        let detailSourceRow = null;
+
+        document.getElementById('openAddModal').addEventListener('click', () => {
+            modalTitle.textContent = 'Tambah Karyawan';
+            submitBtn.textContent = 'Simpan Karyawan';
+            document.getElementById('employeeForm').reset();
+            modal.showModal();
+        });
+        document.getElementById('closeModal').addEventListener('click', () => modal.close());
+        document.getElementById('cancelModal').addEventListener('click', () => modal.close());
+
+        // --- Detail ---
+        function openDetailModal(btn) {
+            detailSourceRow = btn.closest('tr');
+            const cells = detailSourceRow.cells;
+            const nama      = cells[0].querySelector('strong')?.textContent || '-';
+            const panggilan = cells[0].querySelector('span')?.textContent || '-';
+            const nik       = cells[1].textContent.trim();
+            const company   = cells[2].textContent.trim();
+            const divisi    = cells[3].textContent.trim();
+            const jabatan   = cells[4].textContent.trim();
+            const bergabung = cells[5].textContent.trim();
+            const status    = cells[6].querySelector('.status')?.textContent.trim() || '-';
+
+            const inisial = nama.split(' ').filter(w => w.length > 1).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+            document.getElementById('detailAvatar').textContent = inisial;
+            document.getElementById('detailEmpTitle').textContent = nama;
+            document.getElementById('detailEmpNik').textContent = 'NIK: ' + nik;
+            document.getElementById('detailEmpStatus').textContent = status;
+
+            const v = (id, val) => {
+                const el = document.getElementById(id);
+                el.textContent = val && val.trim() !== '-' && val.trim() !== '' ? val : 'Belum diisi';
+                el.className = 'detail-info-value' + (val && val.trim() !== '-' && val.trim() !== '' ? '' : ' empty');
+            };
+            v('de-nama-lengkap', nama); v('de-nama-panggilan', panggilan); v('de-nama-gelar', '-'); v('de-nama-bpjs', '-');
+            v('de-tempat-lahir', '-'); v('de-tanggal-lahir', '-'); v('de-jk', '-'); v('de-agama', '-'); v('de-status-kawin', '-');
+            v('de-nik', nik); v('de-npwp', '-'); v('de-telp', '-'); v('de-email', '-'); v('de-alamat-ktp', '-'); v('de-alamat-domisili', '-');
+            v('de-pendidikan', '-'); v('de-prodi', '-'); v('de-univ', '-'); v('de-tahun-lulus', '-');
+            v('de-perusahaan', company); v('de-divisi', divisi); v('de-jabatan', jabatan); v('de-bergabung', bergabung);
+            v('de-status-aktif', status); v('de-rek-nama', '-'); v('de-rek-no', '-'); v('de-bank', '-');
+
+            detailModal.showModal();
+        }
+
+        document.getElementById('closeDetailModal').addEventListener('click', () => detailModal.close());
+        document.getElementById('closeDetailFooter').addEventListener('click', () => detailModal.close());
+        document.getElementById('editFromDetail').addEventListener('click', () => {
+            detailModal.close();
+            if (detailSourceRow) openEditModal(detailSourceRow.querySelector('.edit-action'));
+        });
+
+        // --- Edit ---
+        function openEditModal(btn) {
+            modalTitle.textContent = 'Edit Karyawan';
+            submitBtn.textContent = 'Perbarui';
+            const row = btn.closest('tr');
+            document.querySelector('[name="nama_lengkap"]').value = row.querySelector('td strong').textContent;
+            modal.showModal();
+        }
+
+        // --- Delete ---
+        function openDeleteModal(btn) {
+            deleteTargetRow = btn.closest('tr');
+            document.getElementById('deleteTargetName').textContent =
+                deleteTargetRow.querySelector('td strong').textContent;
+            deleteModal.showModal();
+        }
+
+        document.getElementById('cancelDelete').addEventListener('click', () => deleteModal.close());
+        document.getElementById('confirmDelete').addEventListener('click', () => {
+            if (deleteTargetRow) deleteTargetRow.remove();
+            deleteModal.close();
+            updateCount();
+        });
+
+        function updateCount() {
+            const count = document.querySelectorAll('#employeeTableBody tr').length;
+            document.getElementById('countBadge').textContent = count + ' Karyawan';
+            document.getElementById('tableSummary').textContent = `Menampilkan 1-${count} dari ${count} data`;
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('#employeeTableBody tr').forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
