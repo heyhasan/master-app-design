@@ -20,6 +20,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ----------------------------------------------------------
+     Frontpage: Mulai Eksplorasi - Toggle Sub Button Lingkaran
+  ---------------------------------------------------------- */
+  const exploreBtn = document.getElementById('exploreBtn');
+  const appOrbitContainer = document.getElementById('appOrbitContainer');
+  const frontContent = document.querySelector('.front-content');
+
+  if (exploreBtn && appOrbitContainer) {
+    exploreBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isExpanded = exploreBtn.classList.toggle('expanded');
+      appOrbitContainer.classList.toggle('active', isExpanded);
+      exploreBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      appOrbitContainer.setAttribute('aria-hidden', isExpanded ? 'false' : 'true');
+
+      if (frontContent) {
+        frontContent.classList.toggle('is-exploring', isExpanded);
+      }
+
+      if (isExpanded) {
+        // Scroll smoothly into view if on mobile screen
+        setTimeout(() => {
+          appOrbitContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 200);
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------
      Helper: animate number count-up
   ---------------------------------------------------------- */
   function animateCount(el, target, duration = 1200) {
