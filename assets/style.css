@@ -1214,6 +1214,11 @@ tbody tr:last-child td { border-bottom: 0; }
 }
 
 .employee-modal { max-width: 980px; }
+.ticket-modal { max-width: 680px; }
+.ticket-modal .company-modal-header {
+  background: linear-gradient(135deg, #4da68a, #3b8b73);
+  border-left: 4px solid #2a6f5c;
+}
 
 @media (max-width: 899px) {
   .employee-panel .table-wrap {

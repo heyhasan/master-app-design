@@ -272,21 +272,24 @@
     </div>
 
     <!-- Modal Form: Buat Tiket Bantuan -->
-    <dialog class="modal-dialog helpdesk-modal" id="ticketModal">
-        <div class="modal-card">
-            <div class="modal-header">
+    <dialog class="company-modal ticket-modal" id="ticketModal" aria-labelledby="ticketModalTitle">
+        <form id="ticketForm" method="dialog">
+            <div class="company-modal-header">
                 <div>
+                    <p class="eyebrow">Pusat Bantuan & Dukungan</p>
                     <h2 id="ticketModalTitle">Ajukan Tiket Bantuan</h2>
-                    <p class="modal-description">Jelaskan kendala Anda agar tim teknis kami dapat segera menindaklanjuti.</p>
+                    <p class="modal-description">Lengkapi formulir di bawah ini agar tim teknis kami dapat segera menindaklanjuti kendala Anda.</p>
                 </div>
                 <button class="modal-close" id="closeTicketModal" type="button" aria-label="Tutup modal">&times;</button>
             </div>
-            <form class="modal-form" id="ticketForm">
+
+            <fieldset class="form-section">
+                <legend>Klasifikasi Kendala</legend>
                 <div class="form-grid">
-                    <div class="form-group">
-                        <label for="ticketAppName">Aplikasi Terkait *</label>
+                    <label class="form-field required-field">
+                        Aplikasi Terkait <span class="required-mark" aria-hidden="true">*</span>
                         <select id="ticketAppName" required>
-                            <option value="">Pilih aplikasi...</option>
+                            <option value="" selected disabled>Pilih aplikasi terkait...</option>
                             <option value="SIKa">SIKa (Sistem Informasi Karyawan)</option>
                             <option value="Office App">Office App</option>
                             <option value="EAsesmen">EAsesmen</option>
@@ -297,40 +300,45 @@
                             <option value="PaDi">PaDi (Pantau Digital)</option>
                             <option value="MasterApp General">MasterApp Core Platform</option>
                         </select>
-                    </div>
+                    </label>
 
-                    <div class="form-group">
-                        <label for="ticketPriority">Prioritas *</label>
+                    <label class="form-field required-field">
+                        Tingkat Prioritas <span class="required-mark" aria-hidden="true">*</span>
                         <select id="ticketPriority" required>
-                            <option value="Sedang">Sedang (Standar)</option>
-                            <option value="Rendah">Rendah (Pertanyaan umum)</option>
-                            <option value="Tinggi">Tinggi (Mendesak / Gangguan)</option>
-                            <option value="Kritis">Kritis (Sistem Terhenti)</option>
+                            <option value="Sedang" selected>Sedang (Standar Operasional)</option>
+                            <option value="Rendah">Rendah (Pertanyaan / Informasi)</option>
+                            <option value="Tinggi">Tinggi (Mendesak / Gangguan Fitur)</option>
+                            <option value="Kritis">Kritis (Sistem Terhenti / Down)</option>
                         </select>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="ticketSubjectInput">Subjek / Judul Kendala *</label>
-                        <input id="ticketSubjectInput" type="text" placeholder="Contoh: Error saat generate laporan bulanan" required>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="ticketMessageInput">Detail Penjelasan *</label>
-                        <textarea id="ticketMessageInput" rows="4" placeholder="Tuliskan kronologi kendala, pesan error yang muncul, atau langkah-langkah yang sudah dicoba..." required></textarea>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="ticketEmailInput">Email Notifikasi *</label>
-                        <input id="ticketEmailInput" type="email" value="heyhasanbasri@gmail.com" required>
-                    </div>
+                    </label>
                 </div>
+            </fieldset>
 
-                <div class="modal-actions">
-                    <button class="btn-cancel" id="cancelTicketBtn" type="button">Batal</button>
-                    <button class="add-button" type="submit">Kirim Tiket</button>
+            <fieldset class="form-section">
+                <legend>Rincian Tiket & Pelapor</legend>
+                <div class="form-grid">
+                    <label class="form-field required-field full-field">
+                        Subjek / Judul Kendala <span class="required-mark" aria-hidden="true">*</span>
+                        <input id="ticketSubjectInput" type="text" placeholder="Contoh: Gagal mengunduh slip gaji bulanan" required>
+                    </label>
+
+                    <label class="form-field required-field full-field">
+                        Detail Penjelasan Masalah <span class="required-mark" aria-hidden="true">*</span>
+                        <textarea id="ticketMessageInput" rows="4" placeholder="Jelaskan kronologi kendala, pesan error yang muncul, atau langkah-langkah yang dilakukan..." required></textarea>
+                    </label>
+
+                    <label class="form-field required-field full-field">
+                        Email Notifikasi Respon <span class="required-mark" aria-hidden="true">*</span>
+                        <input id="ticketEmailInput" type="email" value="heyhasanbasri@gmail.com" placeholder="nama@email.com" required>
+                    </label>
                 </div>
-            </form>
-        </div>
+            </fieldset>
+
+            <div class="company-modal-footer">
+                <button class="cancel-button" id="cancelTicketBtn" type="button">Batal</button>
+                <button class="add-button" type="submit">Kirim Tiket</button>
+            </div>
+        </form>
     </dialog>
 
     <!-- Bottom Navigation Bar -->
