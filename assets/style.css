@@ -3085,3 +3085,542 @@ body.front-page {
     margin-top: 6px;
   }
 }
+
+/* ============================================================
+   HELPDESK & SUPPORT PAGE STYLES
+   ============================================================ */
+
+.helpdesk-page .app {
+  max-width: 1200px;
+  padding-bottom: 120px;
+}
+
+.helpdesk-heading {
+  margin-bottom: 24px;
+}
+
+/* --- Helpdesk Search Section --- */
+.helpdesk-search-container {
+  background: #fff;
+  border: 1px solid #e5e8f1;
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: 0 10px 28px rgba(39, 55, 92, 0.05);
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.helpdesk-search-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #f7f9fd;
+  border: 1.5px solid #dbe2f3;
+  border-radius: 14px;
+  padding: 12px 18px;
+  transition: all 0.3s ease;
+}
+
+.helpdesk-search-box:focus-within {
+  background: #ffffff;
+  border-color: var(--blue, #6288ed);
+  box-shadow: 0 0 0 4px rgba(98, 136, 237, 0.15);
+}
+
+.helpdesk-search-box svg {
+  width: 22px;
+  height: 22px;
+  color: var(--blue-dark, #535dca);
+  flex-shrink: 0;
+}
+
+.helpdesk-search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-dark, #1c2536);
+  outline: none;
+}
+
+.helpdesk-search-box input::placeholder {
+  color: #9aa2b2;
+}
+
+.search-clear-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #8992a5;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.search-clear-btn:hover {
+  color: #e5484d;
+}
+
+.helpdesk-quick-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  font-size: 12.5px;
+}
+
+.quick-tag-label {
+  color: var(--text-muted, #6b7488);
+  font-weight: 700;
+}
+
+.helpdesk-tag {
+  background: #eef2fb;
+  border: 1px solid #dce4f7;
+  color: var(--blue-dark, #535dca);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.helpdesk-tag:hover {
+  background: var(--blue-dark, #535dca);
+  color: #fff;
+  border-color: var(--blue-dark, #535dca);
+  transform: translateY(-1px);
+}
+
+/* --- Support Channel Cards Grid --- */
+.helpdesk-channels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.channel-card {
+  background: #fff;
+  border: 1px solid #e5e8f1;
+  border-radius: 18px;
+  padding: 22px 20px;
+  box-shadow: 0 10px 24px rgba(39, 55, 92, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.channel-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.channel-chat::before { background: linear-gradient(90deg, #6288ed, #535dca); }
+.channel-ticket::before { background: linear-gradient(90deg, #4da68a, #2a9d8f); }
+.channel-contact::before { background: linear-gradient(90deg, #7898ef, #6874d3); }
+
+.channel-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(39, 55, 92, 0.08);
+  border-color: #cbd5ff;
+}
+
+.channel-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.channel-chat .channel-icon { background: #535dca; }
+.channel-ticket .channel-icon { background: #4da68a; }
+.channel-contact .channel-icon { background: #6288ed; }
+
+.channel-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.channel-info h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-dark, #1c2536);
+  margin-bottom: 6px;
+}
+
+.channel-info p {
+  font-size: 12.5px;
+  color: var(--text-muted, #6b7488);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #5d677d;
+}
+
+.status-indicator.online::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+}
+
+.channel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-chat {
+  background: #eef1fb;
+  color: var(--blue-dark, #535dca);
+}
+.btn-chat:hover {
+  background: var(--blue-dark, #535dca);
+  color: #fff;
+}
+
+.btn-ticket {
+  background: #e8f6f2;
+  color: #2b7a67;
+}
+.btn-ticket:hover {
+  background: #2b7a67;
+  color: #fff;
+}
+
+.btn-wa {
+  background: #eaf0fd;
+  color: #4162c9;
+}
+.btn-wa:hover {
+  background: #4162c9;
+  color: #fff;
+}
+
+/* --- Layout Split: FAQ & Ticket Tracker --- */
+.helpdesk-layout {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.faq-category-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.faq-filter-btn {
+  background: #f0f3fa;
+  border: 1px solid #e1e6f4;
+  color: var(--text-muted, #6b7488);
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.faq-filter-btn.active,
+.faq-filter-btn:hover {
+  background: var(--blue-dark, #535dca);
+  color: #fff;
+  border-color: var(--blue-dark, #535dca);
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.faq-item {
+  border: 1px solid #eef1f8;
+  border-radius: 12px;
+  background: #fbfcfe;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.faq-item.active {
+  border-color: #cbd5ff;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(98, 136, 237, 0.08);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark, #1c2536);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.faq-question:hover {
+  color: var(--blue-dark, #535dca);
+}
+
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #8992a5;
+}
+
+.faq-item.active .faq-chevron {
+  transform: rotate(180deg);
+  color: var(--blue-dark, #535dca);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 18px;
+  color: #555f75;
+  font-size: 13.5px;
+  line-height: 1.6;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  padding: 0 18px 16px;
+}
+
+/* --- Ticket Tracking Sidebar --- */
+.helpdesk-side-panel .panel-heading {
+  align-items: center;
+}
+
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 14px 0 18px;
+}
+
+.ticket-card {
+  background: #f9fafd;
+  border: 1px solid #e7ecf7;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ticket-card:hover {
+  background: #fff;
+  border-color: #cbd5ff;
+  box-shadow: 0 4px 12px rgba(98, 136, 237, 0.08);
+  transform: translateY(-1px);
+}
+
+.ticket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticket-code {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--blue-dark, #535dca);
+  font-family: monospace;
+}
+
+.ticket-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.badge-process {
+  background: #eff4fe;
+  color: #3b5bfd;
+}
+
+.badge-pending {
+  background: #fef7ec;
+  color: #c9832b;
+}
+
+.badge-resolved {
+  background: #ebf9f2;
+  color: #2b7a67;
+}
+
+.ticket-subject {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dark, #1c2536);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ticket-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #8c95a8;
+  margin-top: 2px;
+}
+
+.btn-new-ticket-full {
+  width: 100%;
+  background: #eef2fb;
+  border: 1.5px dashed #cbd5ff;
+  border-radius: 10px;
+  color: var(--blue-dark, #535dca);
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.btn-new-ticket-full:hover {
+  background: var(--blue-dark, #535dca);
+  color: #fff;
+  border-color: var(--blue-dark, #535dca);
+}
+
+.btn-new-ticket-full svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* --- Helpdesk Toast Notification --- */
+.helpdesk-toast {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  background: #1c2536;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  display: none;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+  animation: toastPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.helpdesk-toast.show {
+  display: flex;
+}
+
+@keyframes toastPop {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Responsive Adjustments for Helpdesk --- */
+@media (max-width: 899px) {
+  .helpdesk-channels-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .helpdesk-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .helpdesk-search-container {
+    padding: 18px 16px;
+  }
+
+  .helpdesk-search-box {
+    padding: 10px 14px;
+  }
+
+  .helpdesk-search-box input {
+    font-size: 13.5px;
+  }
+
+  .faq-category-filters {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .faq-question {
+    font-size: 13px;
+    padding: 14px 16px;
+  }
+
+  .helpdesk-toast {
+    left: 20px;
+    right: 20px;
+    bottom: 90px;
+    text-align: center;
+    justify-content: center;
+  }
+}

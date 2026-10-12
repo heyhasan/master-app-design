@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpdesk & Dukungan - Master App</title>
+    <meta name="description" content="Pusat bantuan dan dukungan teknis ekosistem Master App. Cari panduan, ajukan tiket laporan, atau hubungi tim bantuan langsung.">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body class="helpdesk-page">
+    <div class="app">
+        <!-- Header -->
+        <header>
+            <div class="header-left">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark"><img class="logo-1" src="assets/logo-1.png" alt="Inspirasi Code"></span>
+                    <span class="brand-name">Master<span>App</span></span>
+                </a>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" type="button" aria-label="Daftarkan Aplikasi" title="Daftarkan Aplikasi">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                        <path d="M17.5 14v7M14 17.5h7" />
+                    </svg>
+                </button>
+                <button class="icon-btn" aria-label="Notifikasi">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Helpdesk Hero Banner -->
+        <div class="manage-heading helpdesk-heading">
+            <div>
+                <p class="eyebrow">Pusat Bantuan & Dukungan</p>
+                <h1>Ada yang bisa kami bantu?</h1>
+                <p class="manage-description">Temukan solusi cepat masalah Anda atau hubungi tim teknis kami</p>
+            </div>
+        </div>
+
+        <!-- Quick Helpdesk Search Bar -->
+        <div class="helpdesk-search-container">
+            <div class="helpdesk-search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input type="text" id="helpdeskSearchInput" placeholder="Ketik kendala Anda (contoh: lupa password, tambah divisi, izin akses)..." autocomplete="off">
+                <button type="button" id="clearHelpdeskSearch" class="search-clear-btn" aria-label="Hapus pencarian" hidden>&times;</button>
+            </div>
+            <div class="helpdesk-quick-tags">
+                <span class="quick-tag-label">Pencarian Populer:</span>
+                <button type="button" class="helpdesk-tag" data-query="akun">Akun & Password</button>
+                <button type="button" class="helpdesk-tag" data-query="karyawan">Data Karyawan</button>
+                <button type="button" class="helpdesk-tag" data-query="integrasi">Integrasi API</button>
+                <button type="button" class="helpdesk-tag" data-query="akses">Hak Akses</button>
+            </div>
+        </div>
+
+        <!-- Support Channels (Action Cards) -->
+        <section class="helpdesk-channels-grid">
+            <div class="channel-card channel-chat">
+                <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                    </svg>
+                </div>
+                <div class="channel-info">
+                    <h3>Live Chat Support</h3>
+                    <p>Terhubung langsung dengan tim technical support kami.</p>
+                    <span class="status-indicator online">Online Sekarang</span>
+                </div>
+                <button type="button" class="channel-btn btn-chat" id="openLiveChatBtn">Mulai Chat</button>
+            </div>
+
+            <div class="channel-card channel-ticket">
+                <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                </div>
+                <div class="channel-info">
+                    <h3>Buat Tiket Bantuan</h3>
+                    <p>Kirim laporan kendala bug atau permohonan fitur baru.</p>
+                    <span class="status-indicator">Respon max 2 jam</span>
+                </div>
+                <button type="button" class="channel-btn btn-ticket" id="openTicketModalBtn">+ Ajukan Tiket</button>
+            </div>
+
+            <div class="channel-card channel-contact">
+                <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                </div>
+                <div class="channel-info">
+                    <h3>Kontak & WhatsApp</h3>
+                    <p>Hotline darurat: <strong>+62 812-3456-7890</strong></p>
+                    <span class="status-indicator">Senin - Jumat (08.00 - 17.00)</span>
+                </div>
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="channel-btn btn-wa">Hubungi WA</a>
+            </div>
+        </section>
+
+        <!-- Main Layout: FAQ + Ticket Status -->
+        <main class="helpdesk-layout">
+            <!-- FAQ Accordion Section -->
+            <section class="manage-panel helpdesk-panel" aria-labelledby="faq-title">
+                <div class="panel-heading">
+                    <div>
+                        <p class="panel-kicker">Pertanyaan Umum</p>
+                        <h2 id="faq-title">Frequently Asked Questions (FAQ)</h2>
+                    </div>
+                    <div class="faq-category-filters">
+                        <button type="button" class="faq-filter-btn active" data-category="all">Semua</button>
+                        <button type="button" class="faq-filter-btn" data-category="akun">Akun</button>
+                        <button type="button" class="faq-filter-btn" data-category="data">Data Master</button>
+                        <button type="button" class="faq-filter-btn" data-category="aplikasi">Aplikasi</button>
+                    </div>
+                </div>
+
+                <div class="faq-list" id="faqAccordion">
+                    <!-- Item 1 -->
+                    <div class="faq-item" data-category="akun">
+                        <button type="button" class="faq-question" aria-expanded="false">
+                            <span>Bagaimana cara mereset password akun MasterApp jika saya lupa?</span>
+                            <span class="faq-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Anda dapat mengklik tautan <strong>"Lupa kata sandi?"</strong> pada halaman Login. Masukkan alamat email terdaftar, dan sistem kami akan mengirimkan tautan reset kata sandi instan dalam beberapa detik.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="faq-item" data-category="data">
+                        <button type="button" class="faq-question" aria-expanded="false">
+                            <span>Bagaimana cara menambahkan divisi baru pada perusahaan?</span>
+                            <span class="faq-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Masuk ke menu <strong>Manage</strong>, pilih tombol cepat <strong>Register Divisi</strong> pada kartu Aksi Cepat. Isi kode divisi, nama divisi, dan pilih perusahaan naungan, lalu tekan tombol Simpan.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="faq-item" data-category="data">
+                        <button type="button" class="faq-question" aria-expanded="false">
+                            <span>Berapa batas maksimal data karyawan yang dapat didaftarkan?</span>
+                            <span class="faq-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Tidak ada batasan jumlah karyawan untuk tier Enterprise MasterApp. Anda dapat menambahkan ratusan hingga ribuan karyawan di bawah masing-masing entitas perusahaan terdaftar.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="faq-item" data-category="aplikasi">
+                        <button type="button" class="faq-question" aria-expanded="false">
+                            <span>Bagaimana cara mengintegrasikan aplikasi internal perusahaan ke ekosistem MasterApp?</span>
+                            <span class="faq-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Gunakan tombol <strong>Daftarkan Aplikasi</strong> di header pojok kanan atas, atau hubungi tim integrasi kami untuk mendapatkan API Key dan webhook SSO (Single Sign-On).</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="faq-item" data-category="akun">
+                        <button type="button" class="faq-question" aria-expanded="false">
+                            <span>Apakah login dengan Google Workspace dapat digunakan oleh seluruh karyawan?</span>
+                            <span class="faq-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Ya, asalkan domain email Google Workspace perusahaan Anda telah ditautkan pada konfigurasi domain perusahaan di halaman Kelola Master Data.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ticket Tracking / Status Panel -->
+            <aside class="manage-panel helpdesk-side-panel" aria-labelledby="ticket-status-title">
+                <div class="panel-heading">
+                    <div>
+                        <p class="panel-kicker">Status Permohonan</p>
+                        <h2 id="ticket-status-title">Tiket Anda</h2>
+                    </div>
+                    <span class="panel-count" id="ticketCountBadge">3 Tiket Aktif</span>
+                </div>
+
+                <div class="ticket-list" id="ticketListContainer">
+                    <!-- Ticket 1 -->
+                    <article class="ticket-card" data-ticket-id="TKT-8841">
+                        <div class="ticket-header">
+                            <span class="ticket-code">#TKT-8841</span>
+                            <span class="ticket-badge badge-process">Diproses</span>
+                        </div>
+                        <h4 class="ticket-subject">Sinkronisasi data karyawan SIKa gagal pada cabang Surabaya</h4>
+                        <div class="ticket-meta">
+                            <span>12 Okt 2026</span>
+                            <span>Teknisi: Bayu Pratama</span>
+                        </div>
+                    </article>
+
+                    <!-- Ticket 2 -->
+                    <article class="ticket-card" data-ticket-id="TKT-8812">
+                        <div class="ticket-header">
+                            <span class="ticket-code">#TKT-8812</span>
+                            <span class="ticket-badge badge-pending">Menunggu Info</span>
+                        </div>
+                        <h4 class="ticket-subject">Permintaan penambahan kuota penyimpanan dokumen Office App</h4>
+                        <div class="ticket-meta">
+                            <span>10 Okt 2026</span>
+                            <span>Teknisi: Dian S.</span>
+                        </div>
+                    </article>
+
+                    <!-- Ticket 3 -->
+                    <article class="ticket-card" data-ticket-id="TKT-8790">
+                        <div class="ticket-header">
+                            <span class="ticket-code">#TKT-8790</span>
+                            <span class="ticket-badge badge-resolved">Selesai</span>
+                        </div>
+                        <h4 class="ticket-subject">Reset hak akses administrator divisi Finance</h4>
+                        <div class="ticket-meta">
+                            <span>08 Okt 2026</span>
+                            <span>Teknisi: Ahmad F.</span>
+                        </div>
+                    </article>
+                </div>
+
+                <button type="button" class="btn-new-ticket-full" id="openTicketModalSideBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <span>Buat Tiket Baru</span>
+                </button>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Modal Form: Buat Tiket Bantuan -->
+    <dialog class="modal-dialog helpdesk-modal" id="ticketModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h2 id="ticketModalTitle">Ajukan Tiket Bantuan</h2>
+                    <p class="modal-description">Jelaskan kendala Anda agar tim teknis kami dapat segera menindaklanjuti.</p>
+                </div>
+                <button class="modal-close" id="closeTicketModal" type="button" aria-label="Tutup modal">&times;</button>
+            </div>
+            <form class="modal-form" id="ticketForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="ticketAppName">Aplikasi Terkait *</label>
+                        <select id="ticketAppName" required>
+                            <option value="">Pilih aplikasi...</option>
+                            <option value="SIKa">SIKa (Sistem Informasi Karyawan)</option>
+                            <option value="Office App">Office App</option>
+                            <option value="EAsesmen">EAsesmen</option>
+                            <option value="Mobilku">Mobilku</option>
+                            <option value="GISurvey">GISurvey</option>
+                            <option value="Inspirasi Kode">Inspirasi Kode</option>
+                            <option value="Ibadahku">Ibadahku</option>
+                            <option value="PaDi">PaDi (Pantau Digital)</option>
+                            <option value="MasterApp General">MasterApp Core Platform</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ticketPriority">Prioritas *</label>
+                        <select id="ticketPriority" required>
+                            <option value="Sedang">Sedang (Standar)</option>
+                            <option value="Rendah">Rendah (Pertanyaan umum)</option>
+                            <option value="Tinggi">Tinggi (Mendesak / Gangguan)</option>
+                            <option value="Kritis">Kritis (Sistem Terhenti)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="ticketSubjectInput">Subjek / Judul Kendala *</label>
+                        <input id="ticketSubjectInput" type="text" placeholder="Contoh: Error saat generate laporan bulanan" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="ticketMessageInput">Detail Penjelasan *</label>
+                        <textarea id="ticketMessageInput" rows="4" placeholder="Tuliskan kronologi kendala, pesan error yang muncul, atau langkah-langkah yang sudah dicoba..." required></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="ticketEmailInput">Email Notifikasi *</label>
+                        <input id="ticketEmailInput" type="email" value="heyhasanbasri@gmail.com" required>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn-cancel" id="cancelTicketBtn" type="button">Batal</button>
+                    <button class="add-button" type="submit">Kirim Tiket</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9.5 12 3l9 6.5" />
+                <path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10" />
+            </svg>
+            Home
+        </a>
+        <a href="manage.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" />
+            </svg>
+            Manage
+        </a>
+        <a href="helpdesk.html" class="nav-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2 2-2 3.5" />
+                <line x1="12" y1="16.5" x2="12" y2="16.5" />
+            </svg>
+            Helpdesk
+        </a>
+        <a href="profile.html" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+            </svg>
+            Profile
+        </a>
+    </nav>
+
+    <!-- Toast Notification Container -->
+    <div id="helpdeskToast" class="helpdesk-toast" aria-live="polite"></div>
+
+    <script src="assets/custom.js"></script>
+</body>
+
+</html>

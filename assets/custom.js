@@ -432,4 +432,198 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200);
   });
 
+  /* ----------------------------------------------------------
+     Helpdesk Page Interactive Features
+  ---------------------------------------------------------- */
+  const faqItems = document.querySelectorAll('.faq-item');
+  const searchInput = document.getElementById('helpdeskSearchInput');
+  const clearSearchBtn = document.getElementById('clearHelpdeskSearch');
+  const filterBtns = document.querySelectorAll('.faq-filter-btn');
+  const quickTags = document.querySelectorAll('.helpdesk-tag');
+  const ticketModal = document.getElementById('ticketModal');
+  const openTicketModalBtn = document.getElementById('openTicketModalBtn');
+  const openTicketModalSideBtn = document.getElementById('openTicketModalSideBtn');
+  const closeTicketModal = document.getElementById('closeTicketModal');
+  const cancelTicketBtn = document.getElementById('cancelTicketBtn');
+  const ticketForm = document.getElementById('ticketForm');
+  const ticketListContainer = document.getElementById('ticketListContainer');
+  const ticketCountBadge = document.getElementById('ticketCountBadge');
+  const helpdeskToast = document.getElementById('helpdeskToast');
+  const openLiveChatBtn = document.getElementById('openLiveChatBtn');
+
+  // Helper toast notification
+  const showToast = (message) => {
+    if (!helpdeskToast) return;
+    helpdeskToast.textContent = message;
+    helpdeskToast.classList.add('show');
+    clearTimeout(helpdeskToast._timer);
+    helpdeskToast._timer = setTimeout(() => {
+      helpdeskToast.classList.remove('show');
+    }, 3500);
+  };
+
+  // 1. FAQ Accordion Toggle
+  faqItems.forEach((item) => {
+    const questionBtn = item.querySelector('.faq-question');
+    if (questionBtn) {
+      questionBtn.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        // Close others for clean accordion experience
+        faqItems.forEach((other) => {
+          other.classList.remove('active');
+          const btn = other.querySelector('.faq-question');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isActive) {
+          item.classList.add('active');
+          questionBtn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  });
+
+  // 2. Realtime FAQ Search & Filtering
+  const filterFAQs = () => {
+    if (!faqItems.length) return;
+    const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const activeCategoryBtn = document.querySelector('.faq-filter-btn.active');
+    const selectedCategory = activeCategoryBtn ? activeCategoryBtn.dataset.category : 'all';
+
+    if (clearSearchBtn) {
+      clearSearchBtn.hidden = !query;
+    }
+
+    faqItems.forEach((item) => {
+      const category = item.dataset.category;
+      const text = item.textContent.toLowerCase();
+      const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+      const matchesQuery = !query || text.includes(query);
+
+      if (matchesCategory && matchesQuery) {
+        item.style.display = 'block';
+        // Auto open if exact query match
+        if (query.length > 2 && text.includes(query)) {
+          item.classList.add('active');
+        }
+      } else {
+        item.style.display = 'none';
+        item.classList.remove('active');
+      }
+    });
+  };
+
+  if (searchInput) {
+    searchInput.addEventListener('input', filterFAQs);
+  }
+
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearchBtn.hidden = true;
+      filterFAQs();
+      searchInput.focus();
+    });
+  }
+
+  // Quick search tags
+  quickTags.forEach((tag) => {
+    tag.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = tag.dataset.query || tag.textContent;
+        filterFAQs();
+      }
+    });
+  });
+
+  // Category filter tabs
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterFAQs();
+    });
+  });
+
+  // 3. Ticket Modal Dialog
+  const openModal = () => {
+    if (ticketModal) {
+      if (typeof ticketModal.showModal === 'function') {
+        ticketModal.showModal();
+      } else {
+        ticketModal.setAttribute('open', '');
+      }
+    }
+  };
+
+  const closeModal = () => {
+    if (ticketModal) {
+      if (typeof ticketModal.close === 'function') {
+        ticketModal.close();
+      } else {
+        ticketModal.removeAttribute('open');
+      }
+    }
+  };
+
+  if (openTicketModalBtn) openTicketModalBtn.addEventListener('click', openModal);
+  if (openTicketModalSideBtn) openTicketModalSideBtn.addEventListener('click', openModal);
+  if (closeTicketModal) closeTicketModal.addEventListener('click', closeModal);
+  if (cancelTicketBtn) cancelTicketBtn.addEventListener('click', closeModal);
+
+  if (ticketModal) {
+    ticketModal.addEventListener('click', (e) => {
+      if (e.target === ticketModal) closeModal();
+    });
+  }
+
+  // 4. Ticket Form Submit Handler
+  if (ticketForm) {
+    ticketForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const appName = document.getElementById('ticketAppName')?.value || 'MasterApp';
+      const subject = document.getElementById('ticketSubjectInput')?.value || 'Permohonan Bantuan';
+      const randomId = 'TKT-' + Math.floor(1000 + Math.random() * 9000);
+
+      // Create new ticket card
+      if (ticketListContainer) {
+        const newTicket = document.createElement('article');
+        newTicket.className = 'ticket-card';
+        newTicket.dataset.ticketId = randomId;
+        newTicket.innerHTML = `
+          <div class="ticket-header">
+            <span class="ticket-code">#${randomId}</span>
+            <span class="ticket-badge badge-process">Baru</span>
+          </div>
+          <h4 class="ticket-subject">[${appName}] ${subject}</h4>
+          <div class="ticket-meta">
+            <span>Baru saja</span>
+            <span>Menunggu Penugasan</span>
+          </div>
+        `;
+        ticketListContainer.prepend(newTicket);
+
+        // Update count badge
+        if (ticketCountBadge) {
+          const count = ticketListContainer.querySelectorAll('.ticket-card').length;
+          ticketCountBadge.textContent = `${count} Tiket Aktif`;
+        }
+      }
+
+      closeModal();
+      ticketForm.reset();
+      showToast(`Tiket #${randomId} berhasil dikirimkan ke tim support.`);
+    });
+  }
+
+  // 5. Live chat simulated action
+  if (openLiveChatBtn) {
+    openLiveChatBtn.addEventListener('click', () => {
+      showToast('Menghubungkan ke agen technical support MasterApp...');
+      setTimeout(() => {
+        showToast('Agen technical support siap melayani Anda melalui live chat.');
+      }, 1500);
+    });
+  }
+
 });
